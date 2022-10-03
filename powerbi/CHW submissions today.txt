@@ -1,0 +1,8 @@
+Total submissions by CHWs today. =
+VAR submissiontoday =
+    CALCULATE (
+        COUNT ( 'commodity request'[CHA name] ),
+        FILTER ( 'commodity request', 'commodity request'[dates] = TODAY () )
+    )
+RETURN
+    IF ( ISBLANK ( submissiontoday ), 0, submissiontoday )
