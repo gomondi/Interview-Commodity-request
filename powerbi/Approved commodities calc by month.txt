@@ -1,0 +1,12 @@
+Approved commodities this month. =
+VAR approvedmonth =
+    CALCULATE (
+        COUNT ( 'commodity request'[final_approval] ),
+        FILTER (
+            'commodity request',
+            MONTH ( 'commodity request'[dates] ) = MONTH ( TODAY () )
+                && 'commodity request'[final_approval] = "yes"
+        )
+    )
+RETURN
+    IF ( ISBLANK ( approvedmonth ), 0, approvedmonth )
