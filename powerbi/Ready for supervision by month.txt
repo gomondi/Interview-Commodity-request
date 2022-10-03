@@ -1,0 +1,12 @@
+Ready for supervision this month. = 
+VAR monthrequest =
+    CALCULATE (
+        COUNT ( 'commodity request'[CHW name] ),
+        FILTER (
+            'commodity request',
+            'commodity request'[ready_for_supervisor] = "yes"
+                && MONTH ( 'commodity request'[opened_date] ) = MONTH ( TODAY () )
+        )
+    )
+RETURN
+    IF ( ISBLANK ( monthrequest ), 0, monthrequest )
