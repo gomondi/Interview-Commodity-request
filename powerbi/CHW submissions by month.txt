@@ -1,0 +1,11 @@
+Total submissions by CHWs this month =
+VAR submissionsmonth =
+    CALCULATE (
+        COUNT ( 'commodity request'[CHA name] ),
+        FILTER (
+            'commodity request',
+            MONTH ( 'commodity request'[dates] ) = MONTH ( TODAY () )
+        )
+    )
+RETURN
+    IF ( ISBLANK ( submissionsmonth ), 0, submissionsmonth )
