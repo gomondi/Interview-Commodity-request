@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:orx="http://openrosa.org/jr/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:vellum="http://commcarehq.org/xforms/vellum">
+	<h:head>
+		<h:title>Request commodities</h:title>
+		<model>
+			<instance>
+				<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms" xmlns="http://openrosa.org/formdesigner/C7F9143A-50D1-4F43-891A-9127C1065DCA" uiVersion="1" version="1" name="Request commodities">
+					<ready_for_supervisor />
+					<commodity />
+					<other_commodity />
+					<quantity_rdt />
+					<quantity_al6 />
+					<quantity_al24 />
+					<quantity_epill />
+					<quantity_coc />
+					<quantity_pop />
+					<quantity_male_condoms />
+					<quantity_female_condoms />
+					<quantity_other />
+					<total_commodities />
+					<total_al24 />
+					<total_epill />
+					<total_coc />
+					<total_pop />
+					<total_male_condoms />
+					<total_female_condoms />
+					<total_other />
+					<total_rdt />
+					<total_al6 />
+				</data>
+			</instance>
+			<bind vellum:nodeset="#form/ready_for_supervisor" nodeset="/data/ready_for_supervisor" calculate="&quot;yes&quot;" />
+			<bind vellum:nodeset="#form/commodity" nodeset="/data/commodity" required="true()" />
+			<bind vellum:nodeset="#form/other_commodity" nodeset="/data/other_commodity" type="xsd:string" vellum:relevant="#form/commodity = 'other'" relevant="/data/commodity = 'other'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_rdt" nodeset="/data/quantity_rdt" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Malaria_RDT'" relevant="/data/commodity = 'Malaria_RDT'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_al6" nodeset="/data/quantity_al6" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'AL6'" relevant="/data/commodity = 'AL6'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_al24" nodeset="/data/quantity_al24" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'AL24'" relevant="/data/commodity = 'AL24'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_epill" nodeset="/data/quantity_epill" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Epills'" relevant="/data/commodity = 'Epills'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_coc" nodeset="/data/quantity_coc" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'COC'" relevant="/data/commodity = 'COC'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_pop" nodeset="/data/quantity_pop" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'POP'" relevant="/data/commodity = 'POP'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_male_condoms" nodeset="/data/quantity_male_condoms" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Male_condoms'" relevant="/data/commodity = 'Male_condoms'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_female_condoms" nodeset="/data/quantity_female_condoms" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Female_condoms'" relevant="/data/commodity = 'Female_condoms'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_other" nodeset="/data/quantity_other" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'other'" relevant="/data/commodity = 'other'" required="true()" />
+			<bind vellum:nodeset="#form/total_commodities" nodeset="/data/total_commodities" vellum:calculate="#form/total_rdt + #form/total_al6 + #form/total_al24 + #form/total_epill + #form/total_coc + #form/total_pop + #form/total_male_condoms + #form/total_female_condoms + #form/total_other" calculate="/data/total_rdt + /data/total_al6 + /data/total_al24 + /data/total_epill + /data/total_coc + /data/total_pop + /data/total_male_condoms + /data/total_female_condoms + /data/total_other" />
+			<bind vellum:nodeset="#form/total_al24" nodeset="/data/total_al24" vellum:calculate="if(#form/quantity_al24 &gt; 1, #form/quantity_al24, 0)" calculate="if(/data/quantity_al24 &gt; 1, /data/quantity_al24, 0)" />
+			<bind vellum:nodeset="#form/total_epill" nodeset="/data/total_epill" vellum:calculate="if(#form/quantity_epill &gt; 1, #form/quantity_epill, 0)" calculate="if(/data/quantity_epill &gt; 1, /data/quantity_epill, 0)" />
+			<bind vellum:nodeset="#form/total_coc" nodeset="/data/total_coc" vellum:calculate="if(#form/quantity_coc &gt; 1, #form/quantity_coc, 0)" calculate="if(/data/quantity_coc &gt; 1, /data/quantity_coc, 0)" />
+			<bind vellum:nodeset="#form/total_pop" nodeset="/data/total_pop" vellum:calculate="if(#form/quantity_pop &gt; 1, #form/quantity_pop, 0)" calculate="if(/data/quantity_pop &gt; 1, /data/quantity_pop, 0)" />
+			<bind vellum:nodeset="#form/total_male_condoms" nodeset="/data/total_male_condoms" vellum:calculate="if(#form/quantity_male_condoms &gt; 1, #form/quantity_male_condoms, 0)" calculate="if(/data/quantity_male_condoms &gt; 1, /data/quantity_male_condoms, 0)" />
+			<bind vellum:nodeset="#form/total_female_condoms" nodeset="/data/total_female_condoms" vellum:calculate="if(#form/quantity_female_condoms &gt; 1, #form/quantity_female_condoms, 0)" calculate="if(/data/quantity_female_condoms &gt; 1, /data/quantity_female_condoms, 0)" />
+			<bind vellum:nodeset="#form/total_other" nodeset="/data/total_other" vellum:calculate="if(#form/quantity_other &gt; 1, #form/quantity_other, 0)" calculate="if(/data/quantity_other &gt; 1, /data/quantity_other, 0)" />
+			<bind vellum:nodeset="#form/total_rdt" nodeset="/data/total_rdt" vellum:calculate="if(#form/quantity_rdt &gt; 1, #form/quantity_rdt, 0)" calculate="if(/data/quantity_rdt &gt; 1, /data/quantity_rdt, 0)" />
+			<bind vellum:nodeset="#form/total_al6" nodeset="/data/total_al6" vellum:calculate="if(#form/quantity_al6 &gt; 1, #form/quantity_al6, 0)" calculate="if(/data/quantity_al6 &gt; 1, /data/quantity_al6, 0)" />
+			<itext>
+				<translation lang="en" default="">
+					<text id="commodity-label">
+						<value>Commodity requested for</value>
+					</text>
+					<text id="commodity-Malaria_RDT-label">
+						<value>Malaria RDT</value>
+					</text>
+					<text id="commodity-AL6-label">
+						<value>AL6</value>
+					</text>
+					<text id="commodity-AL24-label">
+						<value>AL24</value>
+					</text>
+					<text id="commodity-Epills-label">
+						<value>Emergency pills</value>
+					</text>
+					<text id="commodity-COC-label">
+						<value>COC (combined oral contraceptive pills)</value>
+					</text>
+					<text id="commodity-POP-label">
+						<value>POP (progestin only pills)</value>
+					</text>
+					<text id="commodity-Male_condoms-label">
+						<value>Male condoms</value>
+					</text>
+					<text id="commodity-Female_condoms-label">
+						<value>Female condoms</value>
+					</text>
+					<text id="commodity-other-label">
+						<value>Other</value>
+					</text>
+					<text id="other_commodity-label">
+						<value>Please specify on the commodity</value>
+					</text>
+					<text id="quantity_rdt-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_al6-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_al24-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_epill-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_coc-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_pop-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_male_condoms-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_female_condoms-label">
+						<value>Quantity of the commodity</value>
+					</text>
+					<text id="quantity_other-label">
+						<value>Quantity of the commodity</value>
+					</text>
+				</translation>
+			</itext>
+		</model>
+	</h:head>
+	<h:body>
+		<select1 vellum:ref="#form/commodity" ref="/data/commodity">
+			<label ref="jr:itext('commodity-label')" />
+			<item>
+				<label ref="jr:itext('commodity-Malaria_RDT-label')" />
+				<value>Malaria_RDT</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-AL6-label')" />
+				<value>AL6</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-AL24-label')" />
+				<value>AL24</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Epills-label')" />
+				<value>Epills</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-COC-label')" />
+				<value>COC</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-POP-label')" />
+				<value>POP</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Male_condoms-label')" />
+				<value>Male_condoms</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Female_condoms-label')" />
+				<value>Female_condoms</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-other-label')" />
+				<value>other</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/other_commodity" ref="/data/other_commodity">
+			<label ref="jr:itext('other_commodity-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_rdt" ref="/data/quantity_rdt">
+			<label ref="jr:itext('quantity_rdt-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_al6" ref="/data/quantity_al6">
+			<label ref="jr:itext('quantity_al6-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_al24" ref="/data/quantity_al24">
+			<label ref="jr:itext('quantity_al24-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_epill" ref="/data/quantity_epill">
+			<label ref="jr:itext('quantity_epill-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_coc" ref="/data/quantity_coc">
+			<label ref="jr:itext('quantity_coc-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_pop" ref="/data/quantity_pop">
+			<label ref="jr:itext('quantity_pop-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_male_condoms" ref="/data/quantity_male_condoms">
+			<label ref="jr:itext('quantity_male_condoms-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_female_condoms" ref="/data/quantity_female_condoms">
+			<label ref="jr:itext('quantity_female_condoms-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_other" ref="/data/quantity_other">
+			<label ref="jr:itext('quantity_other-label')" />
+		</input>
+	</h:body>
+</h:html>
