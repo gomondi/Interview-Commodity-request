@@ -1,0 +1,12 @@
+Approved commodities today =
+VAR todayapprovedcommodities =
+    CALCULATE (
+        COUNT ( 'commodity request'[final_approval] ),
+        FILTER (
+            'commodity request',
+            'commodity request'[dates] = TODAY ()
+                && 'commodity request'[final_approval] = "yes"
+        )
+    )
+RETURN
+    IF ( ISBLANK ( todayapprovedcommodities ), 0, todayapprovedcommodities )
