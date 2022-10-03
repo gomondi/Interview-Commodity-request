@@ -1,0 +1,9 @@
+let
+    //copy Odata feed link from commcare
+    Source = OData.Feed("https://www.commcarehq.org/a/lwala-community-alliance/api/v0.5/odata/cases/cc558cf3a32d0a83de68420c0d91b7ff/feed", null, [Implementation="2.0"]),
+    #"Changed Type" = Table.TransformColumnTypes(Source,{{"last_modified_date", type date}, {"opened_date", type date}, {"dates", type date}}),
+    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","_"," ",Replacer.ReplaceText,{"commodity"}),
+    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value",{{"name", "CHW name"}, {"cha", "CHA name"}}),
+    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Date filter", each if [opened_date] > #date(2022, 10, 1) then "Yes" else "No")
+in
+    #"Added Conditional Column"
