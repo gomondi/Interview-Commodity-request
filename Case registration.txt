@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:orx="http://openrosa.org/jr/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:vellum="http://commcarehq.org/xforms/vellum">
+	<h:head>
+		<h:title>Request details</h:title>
+		<model>
+			<instance>
+				<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms" xmlns="http://openrosa.org/formdesigner/E49C0542-AC93-431A-BF0E-8872697FA08E" uiVersion="1" version="1" name="Request details">
+					<chw />
+					<cha />
+					<dates />
+				</data>
+			</instance>
+			<bind vellum:nodeset="#form/chw" nodeset="/data/chw" type="xsd:string" required="true()" />
+			<bind vellum:nodeset="#form/cha" nodeset="/data/cha" type="xsd:string" required="true()" />
+			<bind vellum:nodeset="#form/dates" nodeset="/data/dates" type="xsd:date" constraint=". &lt;= today()" required="true()" />
+			<itext>
+				<translation lang="en" default="">
+					<text id="chw-label">
+						<value>Name of the CHW</value>
+					</text>
+					<text id="cha-label">
+						<value>Name of CHA (supervisor)</value>
+					</text>
+					<text id="dates-label">
+						<value>Commodity request date</value>
+					</text>
+				</translation>
+			</itext>
+		</model>
+	</h:head>
+	<h:body>
+		<input vellum:ref="#form/chw" ref="/data/chw">
+			<label ref="jr:itext('chw-label')" />
+		</input>
+		<input vellum:ref="#form/cha" ref="/data/cha">
+			<label ref="jr:itext('cha-label')" />
+		</input>
+		<input vellum:ref="#form/dates" ref="/data/dates">
+			<label ref="jr:itext('dates-label')" />
+		</input>
+	</h:body>
+</h:html>
