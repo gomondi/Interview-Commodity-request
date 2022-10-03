@@ -1,0 +1,12 @@
+Ready for supervision today =
+VAR readyforsupervisortoday =
+    CALCULATE (
+        COUNT ( 'commodity request'[CHW name] ),
+        FILTER (
+            'commodity request',
+            'commodity request'[ready_for_supervisor] = "yes"
+                && 'commodity request'[opened_date] = TODAY ()
+        )
+    )
+RETURN
+    IF ( ISBLANK ( readyforsupervisortoday ), 0, readyforsupervisortoday )
