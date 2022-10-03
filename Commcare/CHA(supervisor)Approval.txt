@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:orx="http://openrosa.org/jr/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:vellum="http://commcarehq.org/xforms/vellum">
+	<h:head>
+		<h:title>CHA(supervisor) Approval form</h:title>
+		<model>
+			<instance>
+				<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms" xmlns="http://openrosa.org/formdesigner/58F8FBD3-E959-416A-B668-F0D339A30F02" uiVersion="1" version="1" name="CHA(supervisor) Approval form">
+					<ready_for_supervisor />
+					<commodity />
+					<other_commodity />
+					<quantity_rdt />
+					<quantity_al6 />
+					<quantity_al24 />
+					<quantity_epill />
+					<quantity_coc />
+					<quantity_pop />
+					<quantity_male_condoms />
+					<quantity_female_condoms />
+					<quantity_other />
+					<final_approval />
+					<close_case />
+				</data>
+			</instance>
+			<instance src="jr://instance/casedb" id="casedb" />
+			<instance src="jr://instance/session" id="commcaresession" />
+			<bind vellum:nodeset="#form/ready_for_supervisor" nodeset="/data/ready_for_supervisor" calculate="&quot;&quot;" />
+			<bind vellum:nodeset="#form/commodity" nodeset="/data/commodity" required="true()" />
+			<bind vellum:nodeset="#form/other_commodity" nodeset="/data/other_commodity" type="xsd:string" vellum:relevant="#form/commodity = 'other'" relevant="/data/commodity = 'other'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_rdt" nodeset="/data/quantity_rdt" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Malaria_RDT'" relevant="/data/commodity = 'Malaria_RDT'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_al6" nodeset="/data/quantity_al6" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'AL6'" relevant="/data/commodity = 'AL6'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_al24" nodeset="/data/quantity_al24" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'AL24'" relevant="/data/commodity = 'AL24'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_epill" nodeset="/data/quantity_epill" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Epills'" relevant="/data/commodity = 'Epills'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_coc" nodeset="/data/quantity_coc" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'COC'" relevant="/data/commodity = 'COC'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_pop" nodeset="/data/quantity_pop" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'POP'" relevant="/data/commodity = 'POP'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_male_condoms" nodeset="/data/quantity_male_condoms" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Male_condoms'" relevant="/data/commodity = 'Male_condoms'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_female_condoms" nodeset="/data/quantity_female_condoms" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Female_condoms'" relevant="/data/commodity = 'Female_condoms'" required="true()" />
+			<bind vellum:nodeset="#form/quantity_other" nodeset="/data/quantity_other" type="xsd:int" constraint=". &lt; 101" vellum:relevant="#form/commodity = 'Other'" relevant="/data/commodity = 'Other'" required="true()" />
+			<bind vellum:nodeset="#form/final_approval" nodeset="/data/final_approval" required="true()" />
+			<bind vellum:nodeset="#form/close_case" nodeset="/data/close_case" required="false()" />
+			<setvalue event="xforms-ready" vellum:ref="#form/commodity" ref="/data/commodity" vellum:value="#case/commodity" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/commodity" />
+			<setvalue event="xforms-ready" vellum:ref="#form/other_commodity" ref="/data/other_commodity" vellum:value="#case/other_commodity" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/other_commodity" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_rdt" ref="/data/quantity_rdt" vellum:value="#case/quantity_rdt" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_rdt" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_al6" ref="/data/quantity_al6" vellum:value="#case/quantity_al6" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_al6" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_al24" ref="/data/quantity_al24" vellum:value="#case/quantity_al24" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_al24" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_epill" ref="/data/quantity_epill" vellum:value="#case/quantity_epill" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_epill" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_coc" ref="/data/quantity_coc" vellum:value="#case/quantity_coc" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_coc" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_pop" ref="/data/quantity_pop" vellum:value="#case/quantity_pop" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_pop" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_male_condoms" ref="/data/quantity_male_condoms" vellum:value="#case/quantity_male_condoms" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_male_condoms" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_female_condoms" ref="/data/quantity_female_condoms" vellum:value="#case/quantity_female_condoms" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_female_condoms" />
+			<setvalue event="xforms-ready" vellum:ref="#form/quantity_other" ref="/data/quantity_other" vellum:value="#case/quantity_other" value="instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/quantity_other" />
+			<itext>
+				<translation lang="en" default="">
+					<text id="commodity-label">
+						<value>Review commodity requested for</value>
+					</text>
+					<text id="commodity-Malaria_RDT-label">
+						<value>Malaria RDT</value>
+					</text>
+					<text id="commodity-AL6-label">
+						<value>AL6</value>
+					</text>
+					<text id="commodity-AL24-label">
+						<value>AL24</value>
+					</text>
+					<text id="commodity-Epills-label">
+						<value>Emergency pills</value>
+					</text>
+					<text id="commodity-COC-label">
+						<value>COC (combined oral contraceptive pills)</value>
+					</text>
+					<text id="commodity-POP-label">
+						<value>POP (progestin only pills)</value>
+					</text>
+					<text id="commodity-Male_condoms-label">
+						<value>Male condoms</value>
+					</text>
+					<text id="commodity-Female_condoms-label">
+						<value>Female condoms</value>
+					</text>
+					<text id="commodity-Other-label">
+						<value>Other</value>
+					</text>
+					<text id="other_commodity-label">
+						<value>Please specify on the commodity</value>
+					</text>
+					<text id="quantity_rdt-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_al6-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_al24-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_epill-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_coc-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_pop-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_male_condoms-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_female_condoms-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="quantity_other-label">
+						<value>Review Quantity of the commodity</value>
+					</text>
+					<text id="final_approval-label">
+						<value>Do you approve this request?</value>
+					</text>
+					<text id="final_approval-Yes-label">
+						<value>Yes</value>
+					</text>
+					<text id="final_approval-No-label">
+						<value>No</value>
+					</text>
+					<text id="close_case-label">
+						<value>Do you want to close this request?</value>
+					</text>
+					<text id="close_case-yes-label">
+						<value>Yes</value>
+					</text>
+					<text id="close_case-no-label">
+						<value>No</value>
+					</text>
+				</translation>
+			</itext>
+		</model>
+		<vellum:hashtags>{&quot;#case/commodity&quot;:null,&quot;#case/other_commodity&quot;:null,&quot;#case/quantity_rdt&quot;:null,&quot;#case/quantity_al6&quot;:null,&quot;#case/quantity_al24&quot;:null,&quot;#case/quantity_epill&quot;:null,&quot;#case/quantity_coc&quot;:null,&quot;#case/quantity_pop&quot;:null,&quot;#case/quantity_male_condoms&quot;:null,&quot;#case/quantity_female_condoms&quot;:null,&quot;#case/quantity_other&quot;:null}</vellum:hashtags>
+		<vellum:hashtagTransforms>{&quot;prefixes&quot;:{&quot;#case/&quot;:&quot;instance('casedb')/casedb/case[@case_id = instance('commcaresession')/session/data/case_id]/&quot;,&quot;#user/&quot;:&quot;instance('casedb')/casedb/case[@case_type = 'commcare-user'][hq_user_id = instance('commcaresession')/session/context/userid]/&quot;}}</vellum:hashtagTransforms>
+	</h:head>
+	<h:body>
+		<select1 vellum:ref="#form/commodity" ref="/data/commodity">
+			<label ref="jr:itext('commodity-label')" />
+			<item>
+				<label ref="jr:itext('commodity-Malaria_RDT-label')" />
+				<value>Malaria_RDT</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-AL6-label')" />
+				<value>AL6</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-AL24-label')" />
+				<value>AL24</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Epills-label')" />
+				<value>Epills</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-COC-label')" />
+				<value>COC</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-POP-label')" />
+				<value>POP</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Male_condoms-label')" />
+				<value>Male_condoms</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Female_condoms-label')" />
+				<value>Female_condoms</value>
+			</item>
+			<item>
+				<label ref="jr:itext('commodity-Other-label')" />
+				<value>Other</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/other_commodity" ref="/data/other_commodity">
+			<label ref="jr:itext('other_commodity-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_rdt" ref="/data/quantity_rdt">
+			<label ref="jr:itext('quantity_rdt-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_al6" ref="/data/quantity_al6">
+			<label ref="jr:itext('quantity_al6-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_al24" ref="/data/quantity_al24">
+			<label ref="jr:itext('quantity_al24-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_epill" ref="/data/quantity_epill">
+			<label ref="jr:itext('quantity_epill-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_coc" ref="/data/quantity_coc">
+			<label ref="jr:itext('quantity_coc-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_pop" ref="/data/quantity_pop">
+			<label ref="jr:itext('quantity_pop-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_male_condoms" ref="/data/quantity_male_condoms">
+			<label ref="jr:itext('quantity_male_condoms-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_female_condoms" ref="/data/quantity_female_condoms">
+			<label ref="jr:itext('quantity_female_condoms-label')" />
+		</input>
+		<input vellum:ref="#form/quantity_other" ref="/data/quantity_other">
+			<label ref="jr:itext('quantity_other-label')" />
+		</input>
+		<select1 vellum:ref="#form/final_approval" ref="/data/final_approval">
+			<label ref="jr:itext('final_approval-label')" />
+			<item>
+				<label ref="jr:itext('final_approval-Yes-label')" />
+				<value>Yes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('final_approval-No-label')" />
+				<value>No</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/close_case" ref="/data/close_case">
+			<label ref="jr:itext('close_case-label')" />
+			<item>
+				<label ref="jr:itext('close_case-yes-label')" />
+				<value>yes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('close_case-no-label')" />
+				<value>no</value>
+			</item>
+		</select1>
+	</h:body>
+</h:html>
